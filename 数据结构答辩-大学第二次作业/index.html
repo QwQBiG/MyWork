@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KFC POS 终端系统</title>
+<style>
+  :root {
+    --red: #cc0000;
+    --red-dark: #a00000;
+    --bg: #f5f5f5;
+    --card: #ffffff;
+    --text: #222222;
+    --text-light: #666666;
+    --border: #e0e0e0;
+    --accent: #ffbc0d;
+    --accent-hover: #f0a800;
+    --green: #2e7d32;
+    --green-hover: #1b5e20;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  .app-header {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: #fff;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .app-header h1 { font-size: 22px; font-weight: 700; letter-spacing: 2px; }
+  .app-header h1 small { font-weight: 400; font-size: 13px; opacity: 0.85; margin-left: 8px; letter-spacing: 0; }
+  .app-header .header-actions { display: flex; gap: 10px; }
+  .btn {
+    padding: 8px 18px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: background 0.15s, transform 0.1s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-accent { background: var(--accent); color: #333; }
+  .btn-accent:hover { background: var(--accent-hover); }
+  .btn-outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.6); color: #fff; }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+  .btn-green { background: var(--green); color: #fff; }
+  .btn-green:hover { background: var(--green-hover); }
+  .btn-sm { padding: 5px 12px; font-size: 13px; }
+  .app-body { display: flex; gap: 0; height: calc(100vh - 60px); overflow: hidden; }
+  .menu-panel { flex: 1; overflow-y: auto; padding: 20px 24px; background: var(--bg); }
+  .menu-panel .panel-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .category-tabs {
+    display: flex; gap: 0; margin-bottom: 20px; background: var(--card);
+    border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .category-tab {
+    flex: 1; padding: 12px 0; text-align: center; font-weight: 600; font-size: 15px;
+    cursor: pointer; transition: background 0.15s, color 0.15s; border: none;
+    background: transparent; color: var(--text-light); position: relative;
+  }
+  .category-tab:hover { background: #f0f0f0; }
+  .category-tab.active { color: var(--red); background: #fff; }
+  .category-tab.active::after {
+    content: ''; position: absolute; bottom: 0; left: 20%; right: 20%;
+    height: 3px; background: var(--red); border-radius: 3px 3px 0 0;
+  }
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+  .menu-item {
+    background: var(--card); border-radius: 8px; padding: 16px 14px; cursor: pointer;
+    transition: box-shadow 0.15s, transform 0.1s; border: 2px solid transparent;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .menu-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); transform: translateY(-1px); }
+  .menu-item:active { transform: scale(0.98); }
+  .menu-item .item-badge { font-size: 11px; font-weight: 700; color: #fff; background: var(--red); border-radius: 4px; padding: 2px 6px; display: inline-block; margin-bottom: 6px; }
+  .menu-item .item-id { font-size: 12px; color: var(--text-light); margin-bottom: 2px; }
+  .menu-item .item-name { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .menu-item .item-price { font-size: 18px; font-weight: 700; color: var(--red); }
+  .menu-item .item-price::after { content: ' 元'; font-size: 13px; font-weight: 400; color: var(--text-light); }
+  .menu-item .item-qty-badge { float: right; background: var(--accent); color: #333; font-weight: 700; font-size: 13px; min-width: 24px; height: 24px; border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 0 6px; }
+  .cart-panel { width: 380px; min-width: 380px; background: var(--card); border-left: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: -2px 0 8px rgba(0,0,0,0.05); }
+  .cart-header { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .cart-header h2 { font-size: 17px; }
+  .cart-header .cart-count { background: var(--red); color: #fff; font-size: 12px; font-weight: 700; border-radius: 10px; padding: 2px 8px; margin-left: 6px; }
+  .cart-items { flex: 1; overflow-y: auto; padding: 12px 20px; }
+  .cart-empty { text-align: center; color: var(--text-light); padding: 50px 0; font-size: 15px; }
+  .cart-empty svg { display: block; margin: 0 auto 12px; opacity: 0.3; }
+  .cart-item-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+  .cart-item-row:last-child { border-bottom: none; }
+  .cart-item-info { flex: 1; min-width: 0; }
+  .cart-item-name { font-weight: 600; font-size: 14px; }
+  .cart-item-price { font-size: 13px; color: var(--text-light); }
+  .cart-item-qty { display: flex; align-items: center; gap: 6px; }
+  .cart-item-qty button { width: 28px; height: 28px; border: 1px solid var(--border); border-radius: 6px; background: #fafafa; cursor: pointer; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; transition: background 0.1s; }
+  .cart-item-qty button:hover { background: #eee; }
+  .cart-item-qty span { min-width: 28px; text-align: center; font-weight: 600; font-size: 15px; }
+  .cart-item-total { min-width: 70px; text-align: right; font-weight: 700; font-size: 15px; color: var(--red); }
+  .cart-footer { border-top: 1px solid var(--border); padding: 16px 20px; background: #fafafa; }
+  .cart-summary-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; }
+  .cart-summary-row.total { font-size: 20px; font-weight: 700; margin-bottom: 14px; padding-top: 6px; border-top: 2px dashed var(--border); }
+  .cart-summary-row.total .amount { color: var(--red); }
+  .cart-actions { display: flex; gap: 8px; }
+  .cart-actions .btn { flex: 1; justify-content: center; padding: 12px; font-size: 15px; }
+  .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.45); z-index: 200; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.15s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal { background: var(--card); border-radius: 12px; width: 500px; max-width: 92vw; max-height: 85vh; overflow-y: auto; box-shadow: 0 12px 40px rgba(0,0,0,0.2); animation: slideUp 0.2s ease; }
+  .modal-header { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .modal-header h2 { font-size: 18px; }
+  .modal-close { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-light); padding: 0 4px; line-height: 1; }
+  .modal-close:hover { color: var(--text); }
+  .modal-body { padding: 20px 24px; }
+  .modal-footer { padding: 14px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 4px; color: var(--text-light); }
+  .form-control { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 15px; transition: border-color 0.15s; font-family: inherit; }
+  .form-control:focus { outline: none; border-color: var(--red); }
+  select.form-control { appearance: auto; }
+  .receipt { background: #fff; padding: 20px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7; }
+  .receipt-title { text-align: center; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .receipt-divider { border: none; border-top: 1px dashed #999; margin: 10px 0; }
+  .receipt-row { display: flex; justify-content: space-between; }
+  .receipt-row.header { font-weight: 700; border-bottom: 1px dashed #999; padding-bottom: 4px; margin-bottom: 4px; }
+  .receipt-total { font-weight: 700; font-size: 15px; margin-top: 4px; }
+  .receipt-footer { text-align: center; margin-top: 12px; color: #888; font-size: 12px; }
+  .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 14px; z-index: 300; animation: slideUp 0.2s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  .toast.success { background: var(--green); }
+  .toast.error { background: var(--red); }
+  .payment-amount { font-size: 36px; font-weight: 700; text-align: center; color: var(--red); margin: 10px 0; }
+  .payment-due { text-align: center; color: var(--text-light); margin-bottom: 16px; }
+  .payment-input-group { display: flex; gap: 10px; align-items: center; }
+  .payment-input-group .form-control { flex: 1; font-size: 20px; text-align: center; }
+  @media (max-width: 820px) {
+    .app-body { flex-direction: column; height: auto; }
+    .cart-panel { width: 100%; min-width: 0; border-left: none; border-top: 1px solid var(--border); max-height: 50vh; }
+    .menu-panel { height: auto; padding: 14px; }
+    .menu-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .app-header { flex-wrap: wrap; gap: 8px; }
+    .app-header h1 { font-size: 17px; }
+    .app-header .header-actions { margin-left: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="app-header">
+  <h1>🍗 KFC <small>POS 终端系统</small></h1>
+  <div class="header-actions">
+    <button class="btn btn-outline btn-sm" onclick="showManageMenu()">📋 管理菜单</button>
+  </div>
+</div>
+<div class="app-body">
+  <div class="menu-panel" id="menuPanel">
+    <div class="panel-title">📖 点餐菜单</div>
+    <div class="category-tabs" id="categoryTabs"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h2>🛒 购物车 <span class="cart-count" id="cartCount">0</span></h2>
+      <button class="btn btn-sm btn-outline" style="color:var(--text);border-color:var(--border)" onclick="clearCart()">清空</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <p>购物车是空的</p>
+        <p style="font-size:13px;margin-top:4px;">点击菜单中的菜品添加</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-summary-row"><span>商品数量</span><span id="itemCountDisplay">0</span></div>
+      <div class="cart-summary-row total"><span>合计</span><span class="amount" id="totalAmount">0.00 元</span></div>
+      <div class="cart-actions"><button class="btn btn-green" onclick="showPayment()">💳 结算</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="paymentModal" style="display:none">
+  <div class="modal" style="width:420px">
+    <div class="modal-header"><h2>💳 收银结算</h2><button class="modal-close" onclick="closeModal('paymentModal')">&times;</button></div>
+    <div class="modal-body">
+      <p class="payment-due">应收金额</p>
+      <div class="payment-amount" id="payDueAmount">0.00</div>
+      <div class="form-group">
+        <label>顾客支付金额 (元)</label>
+        <div class="payment-input-group"><input class="form-control" id="payInput" type="number" step="0.01" min="0" placeholder="输入金额" autofocus></div>
+      </div>
+      <div id="payError" style="color:var(--red);font-size:14px;margin-top:6px;display:none"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" style="color:var(--text);border-color:var(--border)" onclick="closeModal('paymentModal')">取消</button>
+      <button class="btn btn-green" onclick="processPayment()">确认收款</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="receiptModal" style="display:none">
+  <div class="modal" style="width:400px">
+    <div class="modal-header"><h2>🧾 小票</h2><button class="modal-close" onclick="closeModal('receiptModal')">&times;</button></div>
+    <div class="modal-body" style="padding:0"><div class="receipt" id="receiptContent"></div></div>
+    <div class="modal-footer">
+      <button class="btn btn-accent" onclick="window.print()">🖨️ 打印</button>
+      <button class="btn btn-outline" style="color:var(--text);border-color:var(--border)" onclick="closeModal('receiptModal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="manageModal" style="display:none">
+  <div class="modal" style="width:600px">
+    <div class="modal-header"><h2>📋 菜单管理</h2><button class="modal-close" onclick="closeModal('manageModal')">&times;</button></div>
+    <div class="modal-body">
+      <div style="margin-bottom:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="btn btn-green" onclick="showAddFood()">➕ 添加菜品</button>
+        <button class="btn btn-outline btn-sm" onclick="loadMenuData().then(() => { renderManageMenuList(); toast('🔄 已从数据库刷新', 'success'); })">🔄 从数据库刷新</button>
+        <span style="font-size:13px;color:var(--text-light)">点击菜品可修改，🗑️ 按钮可删除</span>
+      </div>
+      <div id="manageMenuList"></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-outline" style="color:var(--text);border-color:var(--border)" onclick="closeModal('manageModal')">关闭</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="foodFormModal" style="display:none">
+  <div class="modal" style="width:440px">
+    <div class="modal-header"><h2 id="foodFormTitle">添加菜品</h2><button class="modal-close" onclick="closeModal('foodFormModal')">&times;</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="editFoodId">
+      <div class="form-group"><label>分类</label><select class="form-control" id="foodCategory"><option value="1">饮料</option><option value="2">汉堡</option><option value="3">小食品</option></select></div>
+      <div class="form-group"><label>菜品编号</label><input class="form-control" id="foodCode" placeholder="例如: B11"></div>
+      <div class="form-group"><label>菜品名称</label><input class="form-control" id="foodName" placeholder="例如: 香辣堡"></div>
+      <div class="form-group"><label>单价 (元)</label><input class="form-control" id="foodPrice" type="number" step="0.1" min="0" placeholder="例如: 22.0"></div>
+      <div id="foodFormError" style="color:var(--red);font-size:14px;margin-top:6px;display:none"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" style="color:var(--text);border-color:var(--border)" onclick="closeModal('foodFormModal')">取消</button>
+      <button class="btn btn-green" id="foodFormSubmit" onclick="saveFood()">确认添加</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CATEGORIES = [
+  { id: 1, name: '饮料', icon: '🥤' },
+  { id: 2, name: '汉堡', icon: '🍔' },
+  { id: 3, name: '小食品', icon: '🍟' },
+];
+
+// iqwqi: try to fetch menu from API server first, then fallback to JSON file
+let menuData = [];
+let cart = {};
+let activeCategory = 1;
+const API_BASE = '/api/menu';   // iqwqi: Python API server endpoint
+
+async function loadMenuData() {
+  let loaded = false;
+  try {
+    // iqwqi: try API server first (connects to MySQL directly)
+    const resp = await fetch(API_BASE);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (Array.isArray(data) && data.length > 0) {
+        menuData = data;
+        loaded = true;
+        console.log('[iqwqi] Menu loaded from API server, items:', data.length);
+      }
+    }
+  } catch (e) {
+    console.log('[iqwqi] API server not reachable, try JSON file');
+  }
+  if (!loaded) {
+    // iqwqi: fallback to static JSON file
+    try {
+      const resp = await fetch('menu_data.json?t=' + Date.now());
+      if (resp.ok) {
+        const data = await resp.json();
+        if (Array.isArray(data) && data.length > 0) {
+          menuData = data;
+          loaded = true;
+          console.log('[iqwqi] Menu loaded from C++ backend, items:', data.length);
+        }
+      }
+    } catch (e2) {
+      console.log('[iqwqi] JSON file not reachable either');
+    }
+  }
+  if (!loaded) {
+    console.log('[iqwqi] Fallback to default menu');
+    menuData = [
+      { categoryId: 1, id: 'D01', name: '可口可乐', price: 6.0 },
+      { categoryId: 1, id: 'D02', name: '雪碧', price: 6.0 },
+      { categoryId: 1, id: 'D03', name: '果汁', price: 8.0 },
+      { categoryId: 1, id: 'D04', name: '美年达', price: 6.0 },
+      { categoryId: 2, id: 'B01', name: '香辣堡', price: 22.0 },
+      { categoryId: 2, id: 'B02', name: '劲脆堡', price: 18.5 },
+      { categoryId: 2, id: 'B03', name: '双层堡', price: 17.5 },
+      { categoryId: 2, id: 'B04', name: '牛扒堡', price: 26.0 },
+      { categoryId: 2, id: 'B05', name: '烤汁堡', price: 21.0 },
+      { categoryId: 2, id: 'B06', name: '芝士堡', price: 15.0 },
+      { categoryId: 2, id: 'B07', name: '鳕鱼堡', price: 20.0 },
+      { categoryId: 2, id: 'B08', name: '鸡肉卷', price: 18.0 },
+      { categoryId: 2, id: 'B09', name: '豪华堡', price: 23.0 },
+      { categoryId: 2, id: 'B10', name: '蔬菜堡', price: 14.0 },
+      { categoryId: 3, id: 'S01', name: '鸡米花', price: 8.0 },
+      { categoryId: 3, id: 'S02', name: '薯条', price: 12.0 },
+      { categoryId: 3, id: 'S03', name: '葡式蛋挞', price: 9.5 },
+    ];
+  }
+  renderCategoryTabs(); renderMenuGrid(); renderCart();
+}
+
+function getCategoryName(catId) { const c = CATEGORIES.find(x => x.id === catId); return c ? c.name : '未知分类'; }
+function toast(msg, type) {
+  const el = document.createElement('div');
+  el.className = 'toast' + (type ? ' ' + type : '');
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2000);
+}
+function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+function renderCategoryTabs() {
+  document.getElementById('categoryTabs').innerHTML = CATEGORIES.map(c =>
+    `<button class="category-tab ${c.id === activeCategory ? 'active' : ''}" onclick="switchCategory(${c.id})">${c.icon} ${c.name}</button>`
+  ).join('');
+}
+
+function switchCategory(catId) { activeCategory = catId; renderCategoryTabs(); renderMenuGrid(); }
+
+function renderMenuGrid() {
+  const container = document.getElementById('menuGrid');
+  const items = menuData.filter(f => f.categoryId === activeCategory);
+  if (!items.length) { container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-light)">该分类暂无菜品</div>'; return; }
+  container.innerHTML = items.map(f => {
+    const qty = cart[f.id] ? cart[f.id].quantity : 0;
+    return `<div class="menu-item" onclick="addToCart('${f.id}')">${qty > 0 ? '<span class="item-qty-badge">'+qty+'</span>' : ''}<div class="item-badge">${getCategoryName(f.categoryId)}</div><div class="item-id">${f.id}</div><div class="item-name">${f.name}</div><div class="item-price">${f.price.toFixed(1)}</div></div>`;
+  }).join('');
+}
+
+function addToCart(foodId) {
+  const food = menuData.find(f => f.id === foodId);
+  if (!food) return;
+  cart[foodId] ? cart[foodId].quantity += 1 : cart[foodId] = { food, quantity: 1 };
+  renderCart(); renderMenuGrid();
+}
+
+function changeCartQty(foodId, delta) {
+  if (!cart[foodId]) return;
+  cart[foodId].quantity += delta;
+  if (cart[foodId].quantity <= 0) delete cart[foodId];
+  renderCart(); renderMenuGrid();
+}
+
+function clearCart() { if (!Object.keys(cart).length) return; cart = {}; renderCart(); renderMenuGrid(); }
+
+function renderCart() {
+  const entries = Object.values(cart);
+  const totalQty = entries.reduce((s, e) => s + e.quantity, 0);
+  const totalPrice = entries.reduce((s, e) => s + e.food.price * e.quantity, 0);
+  document.getElementById('cartCount').textContent = totalQty;
+  if (!entries.length) {
+    document.getElementById('cartItems').innerHTML = '<div class="cart-empty"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><p>购物车是空的</p><p style="font-size:13px;margin-top:4px;">点击菜单中的菜品添加</p></div>';
+    document.getElementById('cartFooter').style.display = 'none';
+    return;
+  }
+  document.getElementById('cartItems').innerHTML = entries.map(e =>
+    `<div class="cart-item-row"><div class="cart-item-info"><div class="cart-item-name">${e.food.name}</div><div class="cart-item-price">${e.food.id} · ${e.food.price.toFixed(1)} 元</div></div><div class="cart-item-qty"><button onclick="changeCartQty('${e.food.id}', -1)">−</button><span>${e.quantity}</span><button onclick="changeCartQty('${e.food.id}', 1)">+</button></div><div class="cart-item-total">${(e.food.price * e.quantity).toFixed(2)}</div></div>`
+  ).join('');
+  document.getElementById('itemCountDisplay').textContent = totalQty;
+  document.getElementById('totalAmount').textContent = totalPrice.toFixed(2) + ' 元';
+  document.getElementById('cartFooter').style.display = 'block';
+}
+
+function showPayment() {
+  const entries = Object.values(cart);
+  if (!entries.length) { toast('购物车是空的，请先点餐', 'error'); return; }
+  const total = entries.reduce((s, e) => s + e.food.price * e.quantity, 0);
+  document.getElementById('payDueAmount').textContent = total.toFixed(2) + ' 元';
+  document.getElementById('payInput').value = '';
+  document.getElementById('payError').style.display = 'none';
+  document.getElementById('paymentModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('payInput').focus(), 100);
+}
+
+function processPayment() {
+  const total = Object.values(cart).reduce((s, e) => s + e.food.price * e.quantity, 0);
+  const paid = parseFloat(document.getElementById('payInput').value);
+  const errorEl = document.getElementById('payError');
+  if (isNaN(paid) || paid < 0) { errorEl.textContent = '⚠️ 请输入有效金额'; errorEl.style.display = 'block'; return; }
+  if (paid < total) { errorEl.textContent = '⚠️ 金额不足！还差 ' + (total - paid).toFixed(2) + ' 元'; errorEl.style.display = 'block'; return; }
+  closeModal('paymentModal');
+  showReceipt(total, paid);
+  cart = {}; renderCart(); renderMenuGrid();
+  toast('收款成功，找零 ' + (paid - total).toFixed(2) + ' 元', 'success');
+}
+
+function showReceipt(total, paid) {
+  const change = paid - total;
+  let rows = '';
+  Object.values(cart).forEach(e => {
+    const sub = e.food.price * e.quantity;
+    rows += '<div class="receipt-row"><span>' + getCategoryName(e.food.categoryId) + ' ' + e.food.name + '</span><span>x' + e.quantity + '</span></div>';
+    rows += '<div class="receipt-row" style="color:#888;font-size:12px"><span>单价 ' + e.food.price.toFixed(1) + '</span><span>' + sub.toFixed(2) + '</span></div>';
+  });
+  document.getElementById('receiptContent').innerHTML =
+    '<div class="receipt-title">🍗 KFC</div><div style="text-align:center;font-size:12px;color:#888">肯德基 POS 收银小票</div><hr class="receipt-divider"><div class="receipt-row header"><span>商品</span><span>金额</span></div>' +
+    rows +
+    '<hr class="receipt-divider"><div class="receipt-row receipt-total"><span>合计</span><span>' + total.toFixed(2) + '</span></div>' +
+    '<div class="receipt-row"><span>实收</span><span>' + paid.toFixed(2) + '</span></div>' +
+    '<div class="receipt-row"><span>找零</span><span>' + change.toFixed(2) + '</span></div>' +
+    '<hr class="receipt-divider"><div class="receipt-footer">谢谢惠顾，欢迎下次光临！</div>';
+  document.getElementById('receiptModal').style.display = 'flex';
+}
+
+function showManageMenu() { document.getElementById('manageModal').style.display = 'flex'; renderManageMenuList(); }
+
+function renderManageMenuList() {
+  document.getElementById('manageMenuList').innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px">' +
+    menuData.map(f =>
+      '<div style="border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.background=\'#f9f9f9\'" onmouseout="this.style.background=\'\'">' +
+      '<div style="cursor:pointer;flex:1" onclick="editFood(\'' + f.id + '\')">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:600">' + f.name + '</span><span style="color:var(--red);font-weight:700">' + f.price.toFixed(1) + ' 元</span></div>' +
+      '<div style="font-size:13px;color:var(--text-light);margin-top:4px"><span class="item-badge" style="background:var(--red)">' + getCategoryName(f.categoryId) + '</span><span style="margin-left:6px">' + f.id + '</span></div></div>' +
+      '<button onclick="event.stopPropagation();deleteFood(\'' + f.id + '\')" style="background:none;border:none;font-size:16px;cursor:pointer;margin-left:8px" title="删除">🗑️</button>' +
+      '</div>'
+    ).join('') + '</div>';
+}
+
+function showAddFood() {
+  document.getElementById('foodFormTitle').textContent = '➕ 添加菜品';
+  document.getElementById('editFoodId').value = '';
+  document.getElementById('foodCategory').value = '2';
+  document.getElementById('foodCode').value = '';
+  document.getElementById('foodName').value = '';
+  document.getElementById('foodPrice').value = '';
+  document.getElementById('foodFormError').style.display = 'none';
+  document.getElementById('foodFormSubmit').textContent = '确认添加';
+  closeModal('manageModal');
+  document.getElementById('foodFormModal').style.display = 'flex';
+}
+
+function editFood(foodId) {
+  const food = menuData.find(f => f.id === foodId);
+  if (!food) return;
+  document.getElementById('foodFormTitle').textContent = '✏️ 修改菜品';
+  document.getElementById('editFoodId').value = food.id;
+  document.getElementById('foodCategory').value = food.categoryId;
+  document.getElementById('foodCode').value = food.id;
+  document.getElementById('foodName').value = food.name;
+  document.getElementById('foodPrice').value = food.price;
+  document.getElementById('foodFormError').style.display = 'none';
+  document.getElementById('foodFormSubmit').textContent = '保存修改';
+  closeModal('manageModal');
+  document.getElementById('foodFormModal').style.display = 'flex';
+}
+
+async function saveFood() {
+  const editId = document.getElementById('editFoodId').value;
+  const categoryId = parseInt(document.getElementById('foodCategory').value);
+  const code = document.getElementById('foodCode').value.trim();
+  const name = document.getElementById('foodName').value.trim();
+  const price = parseFloat(document.getElementById('foodPrice').value);
+  const errorEl = document.getElementById('foodFormError');
+  if (!code) { errorEl.textContent = '⚠️ 请输入菜品编号'; errorEl.style.display = 'block'; return; }
+  if (!name) { errorEl.textContent = '⚠️ 请输入菜品名称'; errorEl.style.display = 'block'; return; }
+  if (isNaN(price) || price < 0) { errorEl.textContent = '⚠️ 请输入有效价格'; errorEl.style.display = 'block'; return; }
+
+  // iqwqi: call Python API server to persist to MySQL
+  const payload = { categoryId, id: code, name, price };
+  try {
+    const url = editId ? API_BASE + '/' + encodeURIComponent(editId) : API_BASE;
+    const method = editId ? 'PUT' : 'POST';
+    const resp = await fetch(url, {
+      method, headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await resp.json();
+    if (result.success) {
+      toast(editId ? '✅ 菜品已更新 (MySQL同步)' : '✅ 菜品已添加 (MySQL同步)', 'success');
+      await loadMenuData();  // iqwqi: reload from server
+      closeModal('foodFormModal');
+      showManageMenu();
+      switchCategory(activeCategory);
+      return;
+    } else {
+      errorEl.textContent = '⚠️ ' + result.message;
+      errorEl.style.display = 'block';
+      return;
+    }
+  } catch (e) {
+    // iqwqi: API server not reachable, fallback to in-memory only
+    console.log('[iqwqi] API not reachable for save, using in-memory');
+    if (editId) {
+      const idx = menuData.findIndex(f => f.id === editId);
+      if (idx === -1) { toast('菜品未找到', 'error'); return; }
+      menuData[idx] = { categoryId, id: code, name, price };
+    } else {
+      if (menuData.find(f => f.id === code)) { errorEl.textContent = '⚠️ 该菜品编号已存在'; errorEl.style.display = 'block'; return; }
+      menuData.push({ categoryId, id: code, name, price });
+    }
+  }
+  closeModal('foodFormModal'); showManageMenu(); switchCategory(activeCategory);
+}
+
+// iqwqi: delete food via API
+async function deleteFood(foodId) {
+  if (!confirm('确定要删除 ' + foodId + ' 吗？此操作不可撤销。')) return;
+  try {
+    const resp = await fetch(API_BASE + '/' + encodeURIComponent(foodId), { method: 'DELETE' });
+    const result = await resp.json();
+    if (result.success) {
+      toast('✅ 已从数据库删除', 'success');
+      await loadMenuData();
+      showManageMenu();
+      switchCategory(activeCategory);
+    } else {
+      toast('⚠️ 删除失败: ' + result.message, 'error');
+    }
+  } catch (e) {
+    // fallback to in-memory
+    menuData = menuData.filter(f => f.id !== foodId);
+    toast('✅ 已删除 (仅内存)', 'success');
+    showManageMenu();
+    switchCategory(activeCategory);
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && document.getElementById('paymentModal').style.display === 'flex') { e.preventDefault(); processPayment(); }
+  if (e.key === 'Escape') { ['paymentModal','receiptModal','manageModal','foodFormModal'].forEach(id => document.getElementById(id).style.display = 'none'); }
+});
+document.querySelectorAll('.modal-overlay').forEach(el => { el.addEventListener('click', (e) => { if (e.target === el) el.style.display = 'none'; }); });
+
+// iqwqi: start loading menu from C++ JSON
+loadMenuData();
+</script>
+</body>
+</html>

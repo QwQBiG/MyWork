@@ -1,0 +1,116 @@
+[
+  {
+    "categoryId": 1,
+    "id": "D01",
+    "name": "可口可乐",
+    "price": 6.0
+  },
+  {
+    "categoryId": 1,
+    "id": "D02",
+    "name": "芬达",
+    "price": 6.0
+  },
+  {
+    "categoryId": 1,
+    "id": "D03",
+    "name": "橙汁",
+    "price": 8.0
+  },
+  {
+    "categoryId": 1,
+    "id": "D04",
+    "name": "美年达",
+    "price": 6.0
+  },
+  {
+    "categoryId": 2,
+    "id": "B01",
+    "name": "巨无霸",
+    "price": 22.0
+  },
+  {
+    "categoryId": 2,
+    "id": "B02",
+    "name": "鸡腿堡",
+    "price": 18.5
+  },
+  {
+    "categoryId": 2,
+    "id": "B03",
+    "name": "双鸡堡",
+    "price": 17.5
+  },
+  {
+    "categoryId": 2,
+    "id": "B04",
+    "name": "牛肉堡",
+    "price": 26.0
+  },
+  {
+    "categoryId": 2,
+    "id": "B05",
+    "name": "板烧堡",
+    "price": 21.0
+  },
+  {
+    "categoryId": 2,
+    "id": "B06",
+    "name": "吉士堡",
+    "price": 15.0
+  },
+  {
+    "categoryId": 2,
+    "id": "B07",
+    "name": "烤鸡堡",
+    "price": 20.0
+  },
+  {
+    "categoryId": 2,
+    "id": "B08",
+    "name": "麦香鱼",
+    "price": 18.0
+  },
+  {
+    "categoryId": 2,
+    "id": "B09",
+    "name": "培根堡",
+    "price": 23.0
+  },
+  {
+    "categoryId": 2,
+    "id": "B10",
+    "name": "蔬菜堡",
+    "price": 14.0
+  },
+  {
+    "categoryId": 3,
+    "id": "S01",
+    "name": "冰激凌",
+    "price": 8.0
+  },
+  {
+    "categoryId": 3,
+    "id": "S02",
+    "name": "薯条",
+    "price": 12.0
+  },
+  {
+    "categoryId": 3,
+    "id": "S03",
+    "name": "香草脆皮",
+    "price": 9.5
+  },
+  {
+    "categoryId": 3,
+    "id": "S04",
+    "name": "我是数据库测试用例",
+    "price": 1024.0
+  },
+  {
+    "categoryId": 3,
+    "id": "S05",
+    "name": "测试测试114514",
+    "price": 114514.0
+  }
+]
