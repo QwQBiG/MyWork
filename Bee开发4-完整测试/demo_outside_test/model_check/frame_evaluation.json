@@ -1,0 +1,28 @@
+{
+  "model": "artifacts\\models\\hive_entrance_bee_yolov8n.pt",
+  "image": "data\\external\\vnbee\\preview\\outside_frame_05s.jpg",
+  "imgsz": 1280,
+  "classes": {
+    "0": "bee",
+    "1": "drone",
+    "2": "pollenbee",
+    "3": "queen"
+  },
+  "thresholds": {
+    "0.05": {
+      "detections": 19,
+      "mean_confidence": 0.3631037893263917,
+      "max_confidence": 0.886012613773346
+    },
+    "0.1": {
+      "detections": 18,
+      "mean_confidence": 0.3778656700419055,
+      "max_confidence": 0.886012613773346
+    },
+    "0.2": {
+      "detections": 13,
+      "mean_confidence": 0.47163383891949284,
+      "max_confidence": 0.886012613773346
+    }
+  }
+}

@@ -1,0 +1,674 @@
+{
+  "total_frames": 100,
+  "total_tracks": 0,
+  "track_history": [
+    0,
+    0,
+    123,
+    147,
+    160,
+    174,
+    188,
+    192,
+    208,
+    219,
+    228,
+    234,
+    240,
+    243,
+    252,
+    257,
+    262,
+    270,
+    274,
+    279,
+    287,
+    291,
+    298,
+    304,
+    306,
+    308,
+    313,
+    322,
+    326,
+    327,
+    337,
+    340,
+    342,
+    348,
+    348,
+    350,
+    352,
+    358,
+    358,
+    355,
+    357,
+    352,
+    358,
+    354,
+    350,
+    351,
+    352,
+    349,
+    348,
+    350,
+    353,
+    357,
+    359,
+    359,
+    359,
+    353,
+    353,
+    352,
+    350,
+    349,
+    349,
+    351,
+    349,
+    351,
+    351,
+    350,
+    354,
+    351,
+    350,
+    346,
+    349,
+    352,
+    355,
+    357,
+    359,
+    361,
+    364,
+    365,
+    365,
+    364,
+    365,
+    365,
+    364,
+    367,
+    369,
+    370,
+    375,
+    369,
+    373,
+    373,
+    375,
+    370,
+    369,
+    370,
+    367,
+    366,
+    370,
+    369,
+    366,
+    368
+  ],
+  "pose_distribution": [
+    {
+      "mean_orientation": 0,
+      "orientation_std": 0,
+      "direction_histogram": "[          0           0           0           0           0           0           0           0]"
+    },
+    {
+      "mean_orientation": 0,
+      "orientation_std": 0,
+      "direction_histogram": "[          0           0           0           0           0           0           0           0]"
+    },
+    {
+      "mean_orientation": "86.40909",
+      "orientation_std": "52.42878",
+      "direction_histogram": "[   0.081301     0.14634     0.20325    0.097561     0.11382    0.097561     0.13008     0.13008]"
+    },
+    {
+      "mean_orientation": "91.17262",
+      "orientation_std": "52.157356",
+      "direction_histogram": "[    0.11565     0.19048     0.15646    0.081633    0.054422    0.095238     0.17687     0.12925]"
+    },
+    {
+      "mean_orientation": "96.65",
+      "orientation_std": "49.571083",
+      "direction_histogram": "[    0.09375     0.15625     0.14375      0.1375      0.1125     0.09375     0.14375     0.11875]"
+    },
+    {
+      "mean_orientation": "87.71287",
+      "orientation_std": "51.242645",
+      "direction_histogram": "[    0.12644     0.12644     0.13793     0.12069     0.11494     0.15517     0.10345     0.11494]"
+    },
+    {
+      "mean_orientation": "81.792076",
+      "orientation_std": "52.925373",
+      "direction_histogram": "[    0.12766     0.13298     0.14894     0.13298    0.095745      0.1383     0.11702     0.10638]"
+    },
+    {
+      "mean_orientation": "89.97525",
+      "orientation_std": "51.608646",
+      "direction_histogram": "[    0.11458     0.15104     0.16667     0.09375       0.125     0.11979       0.125     0.10417]"
+    },
+    {
+      "mean_orientation": "88.26147",
+      "orientation_std": "48.68795",
+      "direction_histogram": "[    0.10577     0.15865     0.15385    0.081731    0.076923     0.16827     0.14904     0.10577]"
+    },
+    {
+      "mean_orientation": "90.11017",
+      "orientation_std": "51.668148",
+      "direction_histogram": "[    0.11416     0.17808     0.10959     0.10959     0.10502     0.13699     0.14155     0.10502]"
+    },
+    {
+      "mean_orientation": "91.02846",
+      "orientation_std": "49.981426",
+      "direction_histogram": "[    0.11404     0.10526     0.12719    0.092105     0.11842     0.14474     0.15789     0.14035]"
+    },
+    {
+      "mean_orientation": "91.39496",
+      "orientation_std": "48.065292",
+      "direction_histogram": "[    0.11111     0.14957     0.16239      0.1453    0.094017     0.12393     0.10256     0.11111]"
+    },
+    {
+      "mean_orientation": "89.104164",
+      "orientation_std": "46.574486",
+      "direction_histogram": "[     0.1125      0.1375     0.14583     0.12917     0.10833     0.14167     0.12083     0.10417]"
+    },
+    {
+      "mean_orientation": "88.68702",
+      "orientation_std": "50.56714",
+      "direction_histogram": "[    0.11523      0.1358     0.16461     0.09465    0.090535     0.13992     0.13992     0.11934]"
+    },
+    {
+      "mean_orientation": "86.35971",
+      "orientation_std": "50.77553",
+      "direction_histogram": "[    0.13889    0.095238     0.18254    0.079365     0.11905     0.10714     0.13889     0.13889]"
+    },
+    {
+      "mean_orientation": "89.30708",
+      "orientation_std": "49.056164",
+      "direction_histogram": "[     0.1323     0.10117     0.15953     0.11673    0.097276     0.14786     0.11673      0.1284]"
+    },
+    {
+      "mean_orientation": "85.192856",
+      "orientation_std": "49.76744",
+      "direction_histogram": "[    0.14885     0.12214     0.13359     0.10305      0.1145     0.15267     0.12977     0.09542]"
+    },
+    {
+      "mean_orientation": "88.818184",
+      "orientation_std": "53.926117",
+      "direction_histogram": "[    0.11852     0.14074     0.14815    0.096296      0.1037     0.14074     0.14444     0.10741]"
+    },
+    {
+      "mean_orientation": "86.72378",
+      "orientation_std": "51.70335",
+      "direction_histogram": "[    0.11314     0.11314     0.17153     0.10219     0.11679     0.15693     0.12774     0.09854]"
+    },
+    {
+      "mean_orientation": "86.367134",
+      "orientation_std": "49.569828",
+      "direction_histogram": "[    0.13978     0.13978     0.12186     0.09319     0.11828     0.15054      0.1362     0.10036]"
+    },
+    {
+      "mean_orientation": "86.89597",
+      "orientation_std": "49.00874",
+      "direction_histogram": "[    0.10801     0.13937     0.16028     0.12195     0.12195     0.13589     0.11498    0.097561]"
+    },
+    {
+      "mean_orientation": "85.73759",
+      "orientation_std": "47.44211",
+      "direction_histogram": "[    0.13058      0.1512     0.12715     0.09622     0.12371     0.12371     0.12371     0.12371]"
+    },
+    {
+      "mean_orientation": "84.86824",
+      "orientation_std": "49.233425",
+      "direction_histogram": "[    0.13758     0.11409     0.15101     0.10738     0.12416     0.10403     0.11745      0.1443]"
+    },
+    {
+      "mean_orientation": "90.6879",
+      "orientation_std": "50.41861",
+      "direction_histogram": "[    0.13487     0.14145     0.14474     0.11513     0.11513     0.11842     0.11184     0.11842]"
+    },
+    {
+      "mean_orientation": "89.292206",
+      "orientation_std": "49.537197",
+      "direction_histogram": "[    0.14379     0.14052     0.10784    0.098039     0.11438     0.15359     0.11765     0.12418]"
+    },
+    {
+      "mean_orientation": "88.56622",
+      "orientation_std": "47.18098",
+      "direction_histogram": "[    0.13636     0.13312     0.12662     0.11364     0.12013     0.12013     0.12338     0.12662]"
+    },
+    {
+      "mean_orientation": "86.635765",
+      "orientation_std": "49.235638",
+      "direction_histogram": "[    0.13419     0.12141     0.12141    0.083067     0.13419     0.15974     0.11821      0.1278]"
+    },
+    {
+      "mean_orientation": "90.02484",
+      "orientation_std": "50.35485",
+      "direction_histogram": "[    0.12422      0.1646     0.13354    0.080745     0.13043     0.12422     0.11801     0.12422]"
+    },
+    {
+      "mean_orientation": "90.16071",
+      "orientation_std": "47.56087",
+      "direction_histogram": "[     0.1227      0.1411     0.13804    0.095092     0.11963     0.14724     0.11656     0.11963]"
+    },
+    {
+      "mean_orientation": "89.38757",
+      "orientation_std": "48.32847",
+      "direction_histogram": "[    0.10398     0.13456     0.12232     0.11009     0.11621      0.1682     0.14067     0.10398]"
+    },
+    {
+      "mean_orientation": "86.79762",
+      "orientation_std": "46.943962",
+      "direction_histogram": "[     0.1276     0.14243     0.12463     0.11276     0.11276     0.13056     0.12463     0.12463]"
+    },
+    {
+      "mean_orientation": "86.21221",
+      "orientation_std": "46.964294",
+      "direction_histogram": "[    0.12059     0.12941     0.10882     0.12353     0.12647     0.16471     0.13824    0.088235]"
+    },
+    {
+      "mean_orientation": "85.18862",
+      "orientation_std": "46.66826",
+      "direction_histogram": "[    0.11111     0.15205      0.1345     0.11988     0.10526     0.13743     0.13158     0.10819]"
+    },
+    {
+      "mean_orientation": "88.95294",
+      "orientation_std": "48.417763",
+      "direction_histogram": "[    0.11207     0.11207      0.1092     0.12356     0.14368     0.13793     0.15805     0.10345]"
+    },
+    {
+      "mean_orientation": "87.57229",
+      "orientation_std": "48.501717",
+      "direction_histogram": "[   0.097701     0.12356     0.12069     0.13218     0.12356     0.14655     0.14943     0.10632]"
+    },
+    {
+      "mean_orientation": "90.791176",
+      "orientation_std": "47.77258",
+      "direction_histogram": "[       0.12     0.13143     0.13429     0.10286     0.12286     0.12857     0.15429     0.10571]"
+    },
+    {
+      "mean_orientation": "87.60955",
+      "orientation_std": "45.780964",
+      "direction_histogram": "[    0.10795       0.125     0.14773    0.090909      0.1392     0.15341     0.15341    0.082386]"
+    },
+    {
+      "mean_orientation": "85.0814",
+      "orientation_std": "44.30158",
+      "direction_histogram": "[    0.12011     0.10894     0.14525     0.11453     0.11453     0.13408     0.15642     0.10615]"
+    },
+    {
+      "mean_orientation": "87.16572",
+      "orientation_std": "46.072594",
+      "direction_histogram": "[    0.11732     0.15084     0.14246    0.092179     0.12291     0.12011     0.13966     0.11453]"
+    },
+    {
+      "mean_orientation": "90.139534",
+      "orientation_std": "44.84551",
+      "direction_histogram": "[    0.10141     0.12394     0.14366     0.10704     0.14366     0.10986     0.16056     0.10986]"
+    },
+    {
+      "mean_orientation": "90.954285",
+      "orientation_std": "45.146748",
+      "direction_histogram": "[   0.098039     0.14566     0.14566     0.10084     0.13725     0.11485     0.14286     0.11485]"
+    },
+    {
+      "mean_orientation": "91.77353",
+      "orientation_std": "45.068542",
+      "direction_histogram": "[   0.090909     0.14773      0.1392     0.11648     0.14205     0.11648       0.125     0.12216]"
+    },
+    {
+      "mean_orientation": "92.88398",
+      "orientation_std": "47.420826",
+      "direction_histogram": "[    0.11732     0.15642     0.11173    0.089385     0.14804     0.12011     0.14804     0.10894]"
+    },
+    {
+      "mean_orientation": "93.70556",
+      "orientation_std": "47.692",
+      "direction_histogram": "[    0.11582     0.15254     0.12712     0.11582     0.13277     0.11582     0.12712     0.11299]"
+    },
+    {
+      "mean_orientation": "93.797226",
+      "orientation_std": "46.412064",
+      "direction_histogram": "[    0.11714     0.13714        0.12     0.12571     0.12571     0.13429     0.12571     0.11429]"
+    },
+    {
+      "mean_orientation": "90.16572",
+      "orientation_std": "46.42574",
+      "direction_histogram": "[    0.11396     0.13675     0.13105     0.11966      0.1453     0.11396     0.13105     0.10826]"
+    },
+    {
+      "mean_orientation": "86.02586",
+      "orientation_std": "45.799107",
+      "direction_histogram": "[    0.10511      0.1392     0.13068     0.13068     0.13068     0.13352     0.12216     0.10795]"
+    },
+    {
+      "mean_orientation": "89.42732",
+      "orientation_std": "46.243404",
+      "direction_histogram": "[    0.10315     0.13181     0.11461     0.12321     0.16046     0.12034     0.12607     0.12034]"
+    },
+    {
+      "mean_orientation": "91.33607",
+      "orientation_std": "45.05119",
+      "direction_histogram": "[    0.11494     0.12644     0.13506     0.13218     0.13218     0.13506      0.1092     0.11494]"
+    },
+    {
+      "mean_orientation": "89.16848",
+      "orientation_std": "47.508278",
+      "direction_histogram": "[    0.11714     0.12286     0.12571     0.13714        0.14     0.12286     0.10571     0.12857]"
+    },
+    {
+      "mean_orientation": "90.98698",
+      "orientation_std": "47.879063",
+      "direction_histogram": "[    0.11331     0.13314     0.11615     0.14164     0.13598     0.13031     0.11615     0.11331]"
+    },
+    {
+      "mean_orientation": "87.09536",
+      "orientation_std": "49.724808",
+      "direction_histogram": "[    0.10084     0.13165     0.13445    0.092437     0.13725     0.12605     0.14286     0.13445]"
+    },
+    {
+      "mean_orientation": "84.385414",
+      "orientation_std": "49.304825",
+      "direction_histogram": "[   0.091922     0.13649     0.15877     0.11142     0.14485     0.11142     0.10864     0.13649]"
+    },
+    {
+      "mean_orientation": "86.41892",
+      "orientation_std": "48.320957",
+      "direction_histogram": "[    0.10028     0.14485     0.12813     0.13092     0.14485     0.13092     0.11142     0.10864]"
+    },
+    {
+      "mean_orientation": "89.371056",
+      "orientation_std": "48.697807",
+      "direction_histogram": "[   0.097493     0.12256     0.12813     0.12535      0.1337     0.13092     0.14485     0.11699]"
+    },
+    {
+      "mean_orientation": "90.81746",
+      "orientation_std": "49.267136",
+      "direction_histogram": "[    0.11048     0.12181     0.14448     0.13881     0.13881     0.11331     0.12465     0.10765]"
+    },
+    {
+      "mean_orientation": "94.13351",
+      "orientation_std": "49.400215",
+      "direction_histogram": "[    0.11615     0.13881     0.12748     0.12748     0.13031     0.13031     0.11048     0.11898]"
+    },
+    {
+      "mean_orientation": "90.18681",
+      "orientation_std": "48.683865",
+      "direction_histogram": "[   0.088068     0.12784     0.13636       0.125     0.14773     0.15057      0.1108     0.11364]"
+    },
+    {
+      "mean_orientation": "92.24457",
+      "orientation_std": "48.18637",
+      "direction_histogram": "[   0.088571        0.14        0.14        0.14        0.14     0.13429     0.10857     0.10857]"
+    },
+    {
+      "mean_orientation": "93.056496",
+      "orientation_std": "47.393673",
+      "direction_histogram": "[    0.10029     0.16332     0.12607     0.12894     0.14327     0.11461     0.12321     0.10029]"
+    },
+    {
+      "mean_orientation": "91.77473",
+      "orientation_std": "45.82259",
+      "direction_histogram": "[   0.088825     0.14327     0.16332     0.12894     0.12607     0.13181     0.11748     0.10029]"
+    },
+    {
+      "mean_orientation": "89.8224",
+      "orientation_std": "47.48353",
+      "direction_histogram": "[   0.096866     0.14815      0.1339     0.13675     0.12251     0.11681      0.1339     0.11111]"
+    },
+    {
+      "mean_orientation": "90.61143",
+      "orientation_std": "48.679478",
+      "direction_histogram": "[    0.11461     0.15759     0.12894     0.12321     0.13467     0.11461     0.10888     0.11748]"
+    },
+    {
+      "mean_orientation": "91.29235",
+      "orientation_std": "48.231144",
+      "direction_histogram": "[   0.094017     0.15954      0.1339     0.11966     0.12821     0.11966      0.1453    0.099715]"
+    },
+    {
+      "mean_orientation": "91.444145",
+      "orientation_std": "49.640816",
+      "direction_histogram": "[    0.11111     0.15954     0.14245     0.12251     0.12251     0.12536     0.11681    0.099715]"
+    },
+    {
+      "mean_orientation": "89.25397",
+      "orientation_std": "48.67212",
+      "direction_histogram": "[   0.097143     0.16286     0.12857     0.13714        0.14     0.11143     0.12571    0.097143]"
+    },
+    {
+      "mean_orientation": "89.303764",
+      "orientation_std": "50.183857",
+      "direction_histogram": "[    0.09322     0.15819     0.16102     0.12147     0.12147     0.12429     0.10734     0.11299]"
+    },
+    {
+      "mean_orientation": "88.91437",
+      "orientation_std": "50.627167",
+      "direction_histogram": "[   0.082621       0.151      0.1453     0.12821     0.15954     0.12821     0.10826    0.096866]"
+    },
+    {
+      "mean_orientation": "88.61622",
+      "orientation_std": "50.195034",
+      "direction_histogram": "[   0.091429     0.16286        0.14     0.11714     0.12857     0.13714     0.12857    0.094286]"
+    },
+    {
+      "mean_orientation": "88.36579",
+      "orientation_std": "49.917843",
+      "direction_histogram": "[    0.10405     0.17052     0.13873     0.11272     0.12139     0.15318     0.10405    0.095376]"
+    },
+    {
+      "mean_orientation": "86.17778",
+      "orientation_std": "46.85846",
+      "direction_histogram": "[    0.10888     0.15186     0.15186     0.11175     0.13467     0.12321     0.11461     0.10315]"
+    },
+    {
+      "mean_orientation": "80.530556",
+      "orientation_std": "48.58295",
+      "direction_histogram": "[   0.079545     0.14205     0.15909     0.12216     0.13068     0.13636     0.12784     0.10227]"
+    },
+    {
+      "mean_orientation": "84.01445",
+      "orientation_std": "47.258587",
+      "direction_histogram": "[    0.11549     0.17183     0.15211     0.11549     0.12676     0.12676    0.092958    0.098592]"
+    },
+    {
+      "mean_orientation": "81.42896",
+      "orientation_std": "47.91908",
+      "direction_histogram": "[    0.10084     0.17087     0.16246     0.10364     0.12325     0.13445     0.10364     0.10084]"
+    },
+    {
+      "mean_orientation": "85.94293",
+      "orientation_std": "46.77659",
+      "direction_histogram": "[    0.11421      0.1532     0.18942    0.091922     0.11699     0.12256     0.12256    0.089136]"
+    },
+    {
+      "mean_orientation": "85.50532",
+      "orientation_std": "49.545002",
+      "direction_histogram": "[    0.10526     0.16066     0.15512     0.14404     0.11634     0.11357     0.12188    0.083102]"
+    },
+    {
+      "mean_orientation": "88.38919",
+      "orientation_std": "47.948193",
+      "direction_histogram": "[    0.11538     0.14011     0.15934     0.13736     0.11264     0.12637     0.10165     0.10714]"
+    },
+    {
+      "mean_orientation": "80.74856",
+      "orientation_std": "46.51305",
+      "direction_histogram": "[    0.10137      0.1726     0.16164     0.12329     0.12603     0.10685     0.10685     0.10137]"
+    },
+    {
+      "mean_orientation": "78.36723",
+      "orientation_std": "45.73376",
+      "direction_histogram": "[    0.12877     0.14795     0.16712     0.11781    0.093151     0.12055     0.11233     0.11233]"
+    },
+    {
+      "mean_orientation": "85.47607",
+      "orientation_std": "45.44131",
+      "direction_histogram": "[    0.14286     0.15934     0.16484     0.12912     0.11264     0.10165     0.10165    0.087912]"
+    },
+    {
+      "mean_orientation": "85.112564",
+      "orientation_std": "45.661728",
+      "direction_histogram": "[    0.13973     0.11233     0.17808     0.12055    0.093151     0.12603     0.12603     0.10411]"
+    },
+    {
+      "mean_orientation": "86.74462",
+      "orientation_std": "46.588223",
+      "direction_histogram": "[    0.13973     0.13151     0.19726     0.11233     0.10685     0.11781     0.10959    0.084932]"
+    },
+    {
+      "mean_orientation": "87.55526",
+      "orientation_std": "48.558273",
+      "direction_histogram": "[    0.10165     0.14286     0.18956     0.12088      0.1044     0.10989     0.11264     0.11813]"
+    },
+    {
+      "mean_orientation": "82.06389",
+      "orientation_std": "49.217514",
+      "direction_histogram": "[    0.12262     0.15259     0.16894     0.11172    0.092643     0.12807     0.11989     0.10354]"
+    },
+    {
+      "mean_orientation": "86.22159",
+      "orientation_std": "46.81827",
+      "direction_histogram": "[     0.1084     0.15176     0.17615     0.11653     0.10027     0.13008     0.11382     0.10298]"
+    },
+    {
+      "mean_orientation": "84.56609",
+      "orientation_std": "46.153664",
+      "direction_histogram": "[    0.13514     0.13514     0.17027     0.11622    0.097297     0.11892     0.10541     0.12162]"
+    },
+    {
+      "mean_orientation": "89.91329",
+      "orientation_std": "46.595364",
+      "direction_histogram": "[    0.13333        0.12       0.184    0.085333    0.098667     0.12533     0.12267     0.13067]"
+    },
+    {
+      "mean_orientation": "92.985954",
+      "orientation_std": "47.230053",
+      "direction_histogram": "[     0.1355     0.12737     0.20325     0.10027    0.092141     0.11924     0.10569     0.11653]"
+    },
+    {
+      "mean_orientation": "92.65143",
+      "orientation_std": "46.931816",
+      "direction_histogram": "[    0.12332     0.12869     0.17694     0.10992    0.093834     0.12601     0.13405     0.10724]"
+    },
+    {
+      "mean_orientation": "92.43896",
+      "orientation_std": "47.586918",
+      "direction_histogram": "[    0.12869     0.14209     0.16086    0.096515     0.10188     0.12332     0.12064     0.12601]"
+    },
+    {
+      "mean_orientation": "92.742775",
+      "orientation_std": "48.421337",
+      "direction_histogram": "[      0.104       0.136        0.16       0.128    0.093333     0.11733     0.13067     0.13067]"
+    },
+    {
+      "mean_orientation": "90.4779",
+      "orientation_std": "50.218605",
+      "direction_histogram": "[   0.097297     0.14595     0.18108     0.11892    0.086486     0.11892     0.12973     0.12162]"
+    },
+    {
+      "mean_orientation": "90.72011",
+      "orientation_std": "49.551678",
+      "direction_histogram": "[     0.1084     0.14634     0.14905     0.13008     0.10298     0.13008     0.12466      0.1084]"
+    },
+    {
+      "mean_orientation": "88.37027",
+      "orientation_std": "47.697517",
+      "direction_histogram": "[    0.10811     0.12973     0.14865     0.12703     0.12432     0.13784     0.12162      0.1027]"
+    },
+    {
+      "mean_orientation": "91.655266",
+      "orientation_std": "49.73015",
+      "direction_histogram": "[   0.079019     0.14441     0.18256     0.12262     0.10082     0.14441     0.12262     0.10354]"
+    },
+    {
+      "mean_orientation": "92.68207",
+      "orientation_std": "49.309563",
+      "direction_histogram": "[    0.12295     0.13115     0.19126     0.11475    0.098361     0.13388     0.11202    0.095628]"
+    },
+    {
+      "mean_orientation": "89.65691",
+      "orientation_std": "49.038822",
+      "direction_histogram": "[    0.12162     0.14865     0.16216      0.1027    0.094595     0.12703     0.11892     0.12432]"
+    },
+    {
+      "mean_orientation": "91.849205",
+      "orientation_std": "50.2075",
+      "direction_histogram": "[    0.11924     0.13821     0.14634     0.11382     0.10298      0.1355     0.12466     0.11924]"
+    },
+    {
+      "mean_orientation": "91.231384",
+      "orientation_std": "49.765415",
+      "direction_histogram": "[    0.10109     0.13388     0.15027     0.12022     0.10656     0.15301     0.12842     0.10656]"
+    },
+    {
+      "mean_orientation": "93.23037",
+      "orientation_std": "49.34186",
+      "direction_histogram": "[    0.10326     0.14402     0.15217      0.1087       0.125     0.14674     0.11685     0.10326]"
+    }
+  ],
+  "behavior_analysis": {
+    "individual_summary": {
+      "total_behaviors": 29658,
+      "behavior_counts": {
+        "working": 28649,
+        "moving": 569,
+        "resting": 312,
+        "grooming": 128
+      },
+      "behavior_durations": {
+        "working": {
+          "mean": 36.46074906628504,
+          "std": 23.900903153867684,
+          "min": "4",
+          "max": "97"
+        },
+        "moving": {
+          "mean": 37.068541300527244,
+          "std": 25.961724120584144,
+          "min": "4",
+          "max": "97"
+        },
+        "resting": {
+          "mean": 14.53525641025641,
+          "std": 7.5679850694340605,
+          "min": "4",
+          "max": "31"
+        },
+        "grooming": {
+          "mean": 24.6484375,
+          "std": 11.437732131353389,
+          "min": "4",
+          "max": "58"
+        }
+      }
+    },
+    "group_summary": {
+      "activity_intensity": {
+        "mean": 0.98,
+        "std": 0.09797958971132714,
+        "min": 0.5,
+        "max": 1.0,
+        "trend": "stable"
+      },
+      "aggregation_score": {
+        "mean": 0.028852290209962744,
+        "std": 0.0053167702566432615,
+        "min": 0.0,
+        "max": 0.03575586623198401
+      },
+      "bee_count": {
+        "mean": 320.58,
+        "std": 72.84657576029225,
+        "min": "0",
+        "max": "375"
+      }
+    },
+    "anomalies": [
+      {
+        "type": "high_activity",
+        "description": "\u68c0\u6d4b\u5230\u5f02\u5e38\u9ad8\u7684\u8702\u7fa4\u6d3b\u52a8\u5f3a\u5ea6",
+        "severity": "warning"
+      }
+    ]
+  },
+  "processing_time": 820.9249401092529
+}
