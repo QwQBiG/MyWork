@@ -1,0 +1,15 @@
+{
+  "total_frames": 100,
+  "processing_time_seconds": 820.9249401092529,
+  "mean_seconds_per_frame": 8.20924940109253,
+  "throughput_fps": 0.12181381648204218,
+  "source_fps": 10.0,
+  "realtime_slowdown_factor": 82.0924940109253,
+  "track_count_mean": 320.58,
+  "track_count_median": 351.0,
+  "track_count_std": 72.84657576029225,
+  "track_count_min": 0,
+  "track_count_max": 375,
+  "track_count_final": 368,
+  "reported_total_tracks": 0
+}

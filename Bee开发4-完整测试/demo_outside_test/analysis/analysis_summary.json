@@ -1,0 +1,34 @@
+{
+  "frames": 120,
+  "duration_s": 2.0,
+  "detections": {
+    "mean_per_frame": 10.666666666666666,
+    "median_per_frame": 11.0,
+    "min_per_frame": 0,
+    "max_per_frame": 19,
+    "total_frame_detections": 1280
+  },
+  "confirmed_tracks": {
+    "mean_per_frame": 9.758333333333333,
+    "median_per_frame": 10.0,
+    "min_per_frame": 0,
+    "max_per_frame": 19,
+    "unique_track_ids_created": 58
+  },
+  "mean_confirmation_ratio_nonempty_frames": 0.897850612682517,
+  "processing": {
+    "time_s": 12.232039213180542,
+    "throughput_fps": 9.810302101606649,
+    "realtime_factor_at_source_fps": 0.16350503502677746
+  },
+  "behavior_counts": {
+    "moving": 111,
+    "wandering": 886,
+    "foraging": 5
+  },
+  "limitations": [
+    "No frame-level ground-truth labels were evaluated in this smoke test.",
+    "Unique track IDs are not equivalent to unique bees because ID switches can occur.",
+    "Entry/exit events are not validated on a two-second clip."
+  ]
+}
